@@ -18,6 +18,7 @@ import {
   calculateRollResult,
   calculateSkillRanges,
   rollD100,
+  rollD20,
   rollWeaponDamage,
 } from "./logic";
 
@@ -52,6 +53,7 @@ export default function BasicPage() {
       weapon: string;
       rolls: number[];
       total: number;
+      location: number;
     } | null)[]
   >([null, null, null, null]);
 
@@ -444,10 +446,13 @@ export default function BasicPage() {
 
                       const updatedDamage = [...weaponDamage];
 
+                      const location = rollD20();
+
                       updatedDamage[index] = {
                         weapon: weapon.name,
                         rolls: damage.rolls,
                         total: damage.total,
+                        location,
                       };
 
                       setWeaponDamage(updatedDamage);
@@ -463,6 +468,7 @@ export default function BasicPage() {
                         {weaponDamage[index]!.rolls.join(" + ")} ={" "}
                         {weaponDamage[index]!.total}
                       </p>
+                      <p>Location: {weaponDamage[index]!.location}</p>
                     </div>
                   )}
                 </div>

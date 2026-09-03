@@ -113,6 +113,10 @@ export function rollD100() {
   return Math.floor(Math.random() * 100) + 1;
 }
 
+export function rollD20() {
+  return Math.floor(Math.random() * 20) + 1;
+}
+
 export function rollWeaponDamage(damage: string, numberOfDice: number) {
   const dieSize = Number(damage.slice(1));
   const rolls: number[] = [];
