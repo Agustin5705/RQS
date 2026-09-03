@@ -7,6 +7,7 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  background-color: black;
 }
 
 @media (max-width: 600px) {
@@ -69,12 +70,6 @@
 
 .stuff {
   grid-column: 1 / -1;
-}
-
-.attribute-list {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
 }
 
 .character-info {
