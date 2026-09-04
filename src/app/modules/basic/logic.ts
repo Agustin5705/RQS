@@ -130,3 +130,7 @@ export function rollWeaponDamage(damage: string, numberOfDice: number) {
     total: rolls.reduce((sum, roll) => sum + roll, 0),
   };
 }
+
+export function calculateArmorAllowance(con: number, str: number) {
+  return Math.floor((con + str) / 4);
+}
