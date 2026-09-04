@@ -20,6 +20,7 @@ import {
   rollD100,
   rollD20,
   rollWeaponDamage,
+  calculateArmorAllowance,
 } from "./logic";
 
 import { skills, weapons, stuff } from "./data";
@@ -31,6 +32,14 @@ export default function BasicPage() {
   const [dex, setDex] = useState(10);
   const [int, setInt] = useState(10);
   const [pow, setPow] = useState(10);
+
+  const [headArmor, setHeadArmor] = useState(0);
+  const [chestArmor, setChestArmor] = useState(0);
+  const [leftArmArmor, setLeftArmArmor] = useState(0);
+  const [rightArmArmor, setRightArmArmor] = useState(0);
+  const [abdomenArmor, setAbdomenArmor] = useState(0);
+  const [leftLegArmor, setLeftLegArmor] = useState(0);
+  const [rightLegArmor, setRightLegArmor] = useState(0);
 
   const [skillValues, setSkillValues] = useState<Record<string, number>>({});
 
@@ -69,6 +78,7 @@ export default function BasicPage() {
   const magicRecovery = calculateMagicRecovery(pow);
   const movementRate = calculateMovementRate(dex, str, siz);
   const actionsPerTurn = calculateActionsPerTurn(int, dex);
+  const armorAllowance = calculateArmorAllowance(con, str);
 
   const [currentHP, setCurrentHP] = useState({
     head: hp.head,
@@ -268,6 +278,12 @@ export default function BasicPage() {
               })
             }
           />
+          Head AP:{" "}
+          <input
+            type="number"
+            value={headArmor}
+            onChange={(e) => setHeadArmor(Number(e.target.value))}
+          />
         </p>
         <p>
           Chest: {hp.chest}/{" "}
@@ -277,9 +293,15 @@ export default function BasicPage() {
             onChange={(e) =>
               setCurrentHP({
                 ...currentHP,
-                head: Number(e.target.value),
+                chest: Number(e.target.value),
               })
             }
+          />
+          Chest AP:{" "}
+          <input
+            type="number"
+            value={chestArmor}
+            onChange={(e) => setChestArmor(Number(e.target.value))}
           />
         </p>
         <p>
@@ -290,9 +312,15 @@ export default function BasicPage() {
             onChange={(e) =>
               setCurrentHP({
                 ...currentHP,
-                head: Number(e.target.value),
+                leftArm: Number(e.target.value),
               })
             }
+          />
+          Left Arm AP:{" "}
+          <input
+            type="number"
+            value={leftArmArmor}
+            onChange={(e) => setLeftArmArmor(Number(e.target.value))}
           />
         </p>
         <p>
@@ -303,9 +331,15 @@ export default function BasicPage() {
             onChange={(e) =>
               setCurrentHP({
                 ...currentHP,
-                head: Number(e.target.value),
+                rightArm: Number(e.target.value),
               })
             }
+          />
+          Right Arm AP:{" "}
+          <input
+            type="number"
+            value={rightArmArmor}
+            onChange={(e) => setRightArmArmor(Number(e.target.value))}
           />
         </p>
         <p>
@@ -316,9 +350,15 @@ export default function BasicPage() {
             onChange={(e) =>
               setCurrentHP({
                 ...currentHP,
-                head: Number(e.target.value),
+                abdomen: Number(e.target.value),
               })
             }
+          />
+          Abdomen AP:{" "}
+          <input
+            type="number"
+            value={abdomenArmor}
+            onChange={(e) => setAbdomenArmor(Number(e.target.value))}
           />
         </p>
         <p>
@@ -329,9 +369,15 @@ export default function BasicPage() {
             onChange={(e) =>
               setCurrentHP({
                 ...currentHP,
-                head: Number(e.target.value),
+                leftLeg: Number(e.target.value),
               })
             }
+          />
+          Left Leg AP:{" "}
+          <input
+            type="number"
+            value={leftLegArmor}
+            onChange={(e) => setLeftLegArmor(Number(e.target.value))}
           />
         </p>
         <p>
@@ -342,35 +388,51 @@ export default function BasicPage() {
             onChange={(e) =>
               setCurrentHP({
                 ...currentHP,
-                head: Number(e.target.value),
+                rightLeg: Number(e.target.value),
               })
             }
           />
+          Right Leg AP:{" "}
+          <input
+            type="number"
+            value={rightLegArmor}
+            onChange={(e) => setRightLegArmor(Number(e.target.value))}
+          />
         </p>
+        <p>Armor Allowance: {armorAllowance}</p>
 
-        <p>
-          Fatigue: {fatigue} /
-          <input
-            type="number"
-            value={currentFatigue}
-            onChange={(e) => setCurrentFatigue(Number(e.target.value))}
-          />
-        </p>
-        <p>
-          Magic: {magic} /{" "}
-          <input
-            type="number"
-            value={currentMagic}
-            onChange={(e) => setCurrentMagic(Number(e.target.value))}
-          />
-        </p>
-        <p>Initiative: {initiative}</p>
-        <p>Damage Modifier: {damageModifier}</p>
-        <p>Magic Modifier: {magicModifier}</p>
-        <p>Fatigue Recovery: {fatigueRecovery}</p>
-        <p>Magic Recovery: {magicRecovery}</p>
-        <p>Movement Rate: {movementRate}</p>
-        <p>Actions Per Turn: {actionsPerTurn}</p>
+        <div className="derived-combat">
+          <p>Actions Per Turn: {actionsPerTurn}</p>
+          <p>Damage Modifier: {damageModifier}</p>
+        </div>
+        <div className="derived-fatigue">
+          <p>
+            Fatigue: {fatigue} /
+            <input
+              type="number"
+              value={currentFatigue}
+              onChange={(e) => setCurrentFatigue(Number(e.target.value))}
+            />
+          </p>
+          <p>Fatigue Recovery: {fatigueRecovery}</p>
+        </div>
+        <div className="derived-movement">
+          <p>Movement Rate: {movementRate}</p>
+          <p>Initiative: {initiative}</p>
+        </div>
+
+        <div className="derived-magic">
+          <p>
+            Magic: {magic} /{" "}
+            <input
+              type="number"
+              value={currentMagic}
+              onChange={(e) => setCurrentMagic(Number(e.target.value))}
+            />
+          </p>
+          <p>Magic Recovery: {magicRecovery}</p>
+          <p>Magic Modifier: {magicModifier}</p>
+        </div>
       </section>
 
       <section className="prepared-roll">

@@ -52,6 +52,38 @@
   grid-column: 2;
 }
 
+.derived p {
+  white-space: nowrap;
+}
+
+.derived-magic {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived-combat {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived-movement {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived-fatigue {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived input {
+  width: 50px;
+}
+
 .prepared-roll {
   grid-column: 3;
 }
