@@ -503,7 +503,7 @@ export default function BasicPage() {
                     onClick={() => {
                       const damage = rollWeaponDamage(
                         weapon.damage,
-                        weapon.magical ? magicModifier : damageModifier,
+                        damageModifier,
                       );
 
                       const updatedDamage = [...weaponDamage];

@@ -24,3 +24,13 @@ body {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+select {
+  background-color: black;
+  color: white;
+}
+
+select option {
+  background-color: black;
+  color: white;
+}
