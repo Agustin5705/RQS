@@ -1,0 +1,146 @@
+.sheet {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  gap: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .sheet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sheet section {
+  border: 1px solid white;
+  margin: 0;
+  padding: 12px;
+}
+
+/* Character information */
+.character {
+  grid-column: 1 / -1;
+}
+
+/* Attributes */
+.attributes {
+  grid-column: 1 / -1;
+}
+
+.attribute-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .attribute-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Main three columns */
+.skills {
+  grid-column: 1;
+}
+
+.derived {
+  grid-column: 2;
+}
+
+.derived p {
+  white-space: nowrap;
+}
+
+.derived-magic {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived-combat {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived-movement {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived-fatigue {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.derived input {
+  width: 50px;
+}
+
+.prepared-roll {
+  grid-column: 3;
+}
+
+/* Bottom sections */
+.weapons {
+  grid-column: 1 / -1;
+}
+
+.weapon-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.stuff {
+  grid-column: 1 / -1;
+}
+
+.character-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.sheet-title {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.skill-input {
+  width: 50px;
+}
+
+.damage-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .sheet {
+    grid-template-columns: 1fr;
+  }
+
+  .skills,
+  .derived,
+  .prepared-roll,
+  .weapons,
+  .stuff {
+    grid-column: 1 / -1;
+  }
+}
